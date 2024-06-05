@@ -3,7 +3,7 @@ const { Pool } = require('pg');
 // Create a PostgreSQL connection pool
 const pool = new Pool({
   user: 'postgres',
-  password: '123456',
+  password: '1234',
   host: 'localhost', // Default is 'localhost' if not specified
   port: 5432,        // Default PostgreSQL port
   database: 'postgres',

@@ -23,5 +23,33 @@ router.get('/homepage', (req, res) => {
 router.get('/admin', (req, res) => {
     res.render('admin/admin_home_page')
 })
+router.get('/searchBookUser', (req, res) => {
+    res.render('user/SearchBookUser')
+})
+router.get('/view-feedback', (req, res) => {
+    res.render('admin/ViewFeedBack')
+})
+router.get('/view-user', (req, res) => {
+    res.render('user/ViewUser')
+})
+router.get('/list-return-user', (req, res) => {
+    res.render('user/ListReturnUser')
+})
+router.get('/list-user', (req, res) => {
+    res.render('admin/ListUser')
+})
+router.get('/list-borrow-user', (req, res) => {
+    res.render('user/ListBorrowUser')
+})
+router.get('/list-processing-user', (req, res) => {
+    res.render('user/ListProcessingUser')
+})
+router.get('/list-borrow-admin', (req, res) => {
+    res.render('admin/ListBorrowedUser')
+})
+router.get('/list-processing-admin', (req, res) => {
+    res.render('admin/ListProcessingAdmin')
+})
+
 
 module.exports = router;
