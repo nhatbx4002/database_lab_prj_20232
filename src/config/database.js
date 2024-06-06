@@ -16,9 +16,9 @@ const pool = new Pool({
 // Test the database connection
 pool.connect((err) => {
   if (err) {
-     console.error('Database connection failed:', err);
+    console.error('Database connection failed:', err);
   } else {
-     console.log('Database connected successfully');
+    console.log('Database connected successfully');
   }
 });
 
@@ -28,7 +28,7 @@ pool.on('error', (err) => {
 });
 
 pool.on('connect', (client) => {
-    client.query('SET search_path TO library');
+  client.query('SET search_path TO library');
 });
 
 module.exports = pool;
