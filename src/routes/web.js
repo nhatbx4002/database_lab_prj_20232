@@ -50,21 +50,10 @@ router.get('/user', (req, res) => {
 router.get('/feedback', (req, res) => {
     res.render('user/feedback');
 })
-router.get('/listbook', (req, res) => {
-    res.render('admin/listbook');
-})
-// router.get('/ListBorrowAdmin/:action', (req, res) => {
-//     const action = req.params.action;
-//     if (action == 'Borrow') {
-//         console.log('asdasdasd');
-//     } else if (action == 'Processing') {
-//         console.log("Processing");
-//     } else {
-//         console.log('Returned');
-//     }
-//     res.render('admin/ListBorrowAdmin')
-// })
 router.get('/ListBorrowAdmin/:action', adminController.getBookBorrow)
 router.post('/DeleteUser', adminController.adminDeleteUSer);
-router.get('/AdminViewUser/:username', adminController.adminViewUserInfo)
+router.get('/AdminViewUser/:username', adminController.adminViewUserInfo);
+router.post('/ConfirmBorrowed', adminController.ConfirmBorrowed);
+router.post('/ConfirmReturned', adminController.ConfirmReturned);
+router.get('/ListBook', adminController.GetBook);
 module.exports = router;

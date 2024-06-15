@@ -98,23 +98,27 @@
                                                 </td>
 
                                                 <% if (action === 'Processing') { %>
-                                                <td class="text-center">
-                                                    <a href="Borrow" class="table-link"
-                                                        style="text-decoration: none;" title="Book Borrow">
-                                                        <span class="fa-stack">
-                                                            <i class="fa fa-square-check"></i>
-                                                        </span>
-                                                    </a>
-                                                </td>
+                                                    <td class="text-center">
+                                                        <form method="post" action="/webtruyen/ConfirmBorrowed">
+                                                            <!-- Input hidden để truyền ID sách -->
+                                                            <input type="hidden" name="Id" value="<%= listBook.rows[i].id %>">
+                                                            <!-- Button với icon hộp chọn -->
+                                                            <button type="submit" class="btn btn-link table-link" style="text-decoration: none; background-color: transparent;" title="Book Borrowed">
+                                                                <i class="far fa-square"></i>
+                                                            </button>
+                                                        </form>
+                                                    </td>
                                                 <% } else if (action === 'Borrow') { %>
-                                                <td class="text-center">
-                                                    <a href="ReturnBorrower" class="table-link"
-                                                        style="text-decoration: none;" title="Book Returned">
-                                                        <span class="fa-stack">
-                                                            <i class="fa fa-square-check"></i>
-                                                        </span>
-                                                    </a>
-                                                </td>
+                                                    <td class="text-center">
+                                                        <form method="post" action="/webtruyen/ConfirmReturned">
+                                                            <!-- Input hidden để truyền ID sách -->
+                                                            <input type="hidden" name="Id" value="<%= listBook.rows[i].id %>">
+                                                            <!-- Button với icon hộp chọn -->
+                                                            <button type="submit" class="btn btn-link table-link" style="text-decoration: none; background-color: transparent;" title="Book Borrowed">
+                                                                <i class="far fa-square"></i>
+                                                            </button>
+                                                        </form>
+                                                    </td>
                                                 <% } %>
                                             </tr>
                                         <% } %>

@@ -63,57 +63,41 @@
                                             <tr>
                                                 <th><span>ID</span></th>
                                                 <th class="text-center"><span>Book</span></th>
-                                                <th><span>Image</span></th>
+                                                
                                                 <th><span>Author</span></th>
-                                                <th><span>Category</span></th>
-                                                <th><span>Language</span></th>
+                                                <!-- <th><span>Category</span></th> -->
                                                 <th><span>Total</span></th>
                                                 <th><span>Current</span></th>
-                                                <th><span>Position</span></th>
+                                                <!-- <th><span>Position</span></th> -->
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           
+                                            <% for(var i=0; i < book.rowCount; i++) { %>
                                                 <tr>
-                                                    <td></td>
+                                                    <td><%- book.rows[i].id %></td>
 
                                                     <td>
-                                                        <p><p>
-                                                    </td>
-
-                                                    <td><img src="" alt=""></td>
-
-                                                    <td>
-                                                        
-                                                    </td>
-
-                                                    <td>
-                                                       
+                                                        <p><%- book.rows[i].name %><p>
                                                     </td>
                                                     <td>
-                                                       
+                                                        <%- book.rows[i].author %>
                                                     </td>
                                                     <td>
-                                                        
+                                                        <%- book.rows[i].total %>
                                                     </td>
                                                     <td>
-                                                        
+                                                        <%- book.rows[i].current %>
                                                     </td>
                                                     <td>
-                                                        
-                                                    </td>
-                                                    <td>
-                                                        <a href="" class="table-link" style="text-decoration: none;" title="View Book Detail">
+                                                        <a href="AdminViewBook/<%- book.rows[i].id %>" class="table-link" style="text-decoration: none;" title="View Book Profile">
                                                             <span class="fa-stack">
                                                                 <i class="fa-solid fa-eye"></i>
                                                             </span>
                                                         </a>
-
                                                     </td>
                                                 </tr>
-                                           
-
+                                           <% } %>
                                         </tbody>
                                     </table>
                                 </div>

@@ -24,7 +24,6 @@ const getNumberProcess = async () => {
 const listUsers = async () => {
     const query = 'SELECT * FROM users WHERE role = $1 ';
     const result = await pool.query(query, ["0"]);
-    // console.log('Số lượng người dùng:', result.rowCount);
     return result;
 }
 
@@ -71,6 +70,16 @@ const GetListBookReturned = async () => {
         res.status(500).send('Co loi xay ra');
     }
 }
+const GetAllBook = async () => {
+    try {
+        const query = ' SELECT * FROM book ';
+        let result = await pool.query(query);
+        return result;
+    } catch (error) {
+        console.error('Loi khi truy xuat sach : ', error);
+        res.status(500).send('Co loi xay ra');
+    }
+}
 module.exports = {
     getNumberBooks,
     getNumberUsers,
@@ -80,6 +89,7 @@ module.exports = {
     ViewUserInfo,
     GetListBookProcessing,
     GetListBookReturned,
-    GetListBookBorrowed
+    GetListBookBorrowed,
+    GetAllBook
 
 }
