@@ -5,9 +5,9 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Admin Page</title>
+        <title>Truyen</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link rel="stylesheet" href="../css/admin.css">
+        <link rel="stylesheet" href="/css/admin.css">
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 
     </head>
@@ -16,7 +16,7 @@
         <%- include('../admin/navbar.ejs') %>
 
         <div id="layoutSidenav">
-            <%- include('../user/sidebar.ejs') %>
+            <%- include('../admin/sidebar.ejs') %>
             <!-- Sidebar  -->
         
 
@@ -43,8 +43,24 @@
                                                     <p class="mb-0">Username</p>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                    <input type="text" name="name" value=""/>
-
+                                                    <input type="text" name="name" value="<%- userinfo.username %>" disabled/>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="mb-0">Firstname</p>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="text" class="name" value ="<%- userinfo.firstname %>" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="mb-0">Lastname</p>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input type="text" class="firstname" value ="<%- userinfo.lastname %>"disabled >
                                                 </div>
                                             </div>
                                             <hr>
@@ -53,16 +69,25 @@
                                                     <p class="mb-0">Gender</p>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                    <%-if(userinfo.)">
-                                                        <input class="form-check-input" type="radio" name="sex" value="true" id="flexRadioDefault1" >
+                                                    <% if( userinfo.sex.trim() == 'Nam') { %>
+                                                        <input class="form-check-input" type="radio" name="sex" value="true" id="flexRadioDefault1" checked disabled>
                                                         <label class="form-check-label" for="flexRadioDefault1">
                                                             Male
                                                         </label>
-                                                        <input class="form-check-input" type="radio" name="sex" value="false" id="flexRadioDefault2" checked>
+                                                        <input class="form-check-input" type="radio" name="sex" value="false" id="flexRadioDefault2" disabled>
                                                         <label class="form-check-label" for="flexRadioDefault2">
                                                             Female
                                                         </label>
-                                                    </%>
+                                                        <% }else{ %>
+                                                        <input class="form-check-input" type="radio" name="sex" value="true" id="flexRadioDefault1" disabled>
+                                                        <label class="form-check-label" for="flexRadioDefault1">
+                                                            Male
+                                                        </label>
+                                                        <input class="form-check-input" type="radio" name="sex" value="false" id="flexRadioDefault2" checked disabled>
+                                                        <label class="form-check-label" for="flexRadioDefault2">
+                                                            Female
+                                                        </label>
+                                                    <% } %>
                                                     
                                                     
 
@@ -74,17 +99,7 @@
                                                     <p class="mb-0">Date Birth</p>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                    <input name="datebirth" type="date" value="${user.datebirth}" />
-
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <p class="mb-0">Password</p>
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    <input  name="password" type="text" value="" />
+                                                    <input name="datebirth" type="date" value="<%= userinfo.datebirth.toISOString().split('T')[0] %>" disabled/>
                                                 </div>
                                             </div>
                                             <hr>
@@ -93,32 +108,11 @@
                                                     <p class="mb-0">Email</p>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                    <input  name="gmail" type="email" value="" />
+                                                    <input  name="gmail" type="email" value="<%- userinfo.email %>"  disabled/>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <p class="mb-0">Phone</p>
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    <input  name="phone" type="text" value="" />
-
-                                                </div>
                                             </div>
-<!--                                                    <hr>
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <p class="mb-0">Change Image Profile</p>
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    <input  name="avt" type="file" value="${user.avt}"/>
-
-                                                </div>
-                                            </div>-->
-                                            <input  name="avt" type="hidden" value=""/>
-                                        </div>
-                                            <input style="width: 20%" href="UpdateUser?id=${user.username}" type="submit" class="btn btn-primary" value="Update Profile"></input>
+                                            </div>
                                     </form>
 
                                 </div>
@@ -128,6 +122,7 @@
                 </main>
 
                 <!-- Footer -->
+                <%- include('../footer.ejs') %>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -145,7 +140,6 @@
 
             });
         </script>
-
     </body>
 
 </html>

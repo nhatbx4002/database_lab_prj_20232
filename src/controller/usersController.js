@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 require('dotenv').config();
 
-
 // Function to create a new user (signup)
 async function create_users(req, res) {
   const { firstname, lastname, sex, username, email, password, datebirth, confirmpassword } = req.body;
@@ -121,15 +120,27 @@ async function reset(req, res) {
 // userController.js
 async function getUserInfo(req, res) {
   const username = req.session.username;
-  let result = await pool.query('Select * from userinfo WHERE  username = $1', [username]);
-  console.log(result.rows[0].username);
-  return res.render('user_info', { userinfo: result.rows[0] });
+  try {
+    const query = 'Select * from userinfo WHERE username = $1;'
+    const result = await pool.query(query, [username]);
+    res.render('user/ViewUser', { userinfo: result.rows[0] });
+  } catch (error) {
+    console.error('Lỗi truy vấn:', error);
+    res.status(500).send('Lỗi máy chủ nội bộ');
+  }
 }
 
-async function updateUSerInfo(req, res) {
-  const username = req.session.username;
-  const { new_firstname, new_lastname, new_sex, new_username, new_email, new_datebirth } = req.body;
-  console.log(new_firstname);
+async function UpdateUserInfo(req, res) {
+  const { username, sex, datebirth } = req.body;
+  try {
+    const query = 'UPDATE users SET sex = $1, datebirth = $2 WHERE username = $3; '
+    const result = await pool.query(query, [sex, datebirth, username])
+    console.log('thanhcong');
+    res.redirect('../webtruyen/test11')
+  } catch (error) {
+    console.error('Lỗi truy vấn:', error);
+    res.status(500).send('Lỗi máy chủ nội bộ');
+  }
 }
 
 
@@ -138,5 +149,5 @@ module.exports = {
   login,
   reset,
   getUserInfo,
-  updateUSerInfo
+  UpdateUserInfo
 }

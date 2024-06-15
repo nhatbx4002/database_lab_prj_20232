@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <title>Admin Page</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link rel="stylesheet" href="../css/admin.css">
+        <link rel="stylesheet" href="/css/admin.css">
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 
     </head>
@@ -29,6 +29,7 @@
                                 <div class="card bg-primary text-white mb-4">
                                     <div class="card-body">
                                         Total Book: <span style="font-size: 1.5rem" class="mx-2"></span>
+                                        <%- numberBooks %>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="ListBook">View Details</a>
@@ -38,7 +39,7 @@
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Total User: <span style="font-size: 1.5rem" class="mx-2"></span></div>
+                                    <div class="card-body">Total User: <span style="font-size: 1.5rem" class="mx-2"></span><%- numberUsers %></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="ListUser">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -47,7 +48,7 @@
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">List Book Borrowed: <span style="font-size: 1.5rem"></span></div>
+                                    <div class="card-body">List Book Borrowed: <span style="font-size: 1.5rem"></span><%- numberBooks_Borrowed %></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="ListBorrowAdmin?action=borrowed">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -56,7 +57,7 @@
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">List Book Order: <span style="font-size: 1.5rem" class="mx-2"></span></div>
+                                    <div class="card-body">List Book Order: <span style="font-size: 1.5rem" class="mx-2"></span><%- numberProcess %></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="ListBorrowAdmin?action=processing">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>

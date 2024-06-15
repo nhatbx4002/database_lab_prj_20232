@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,18 +7,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <title>Admin Page</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link rel="stylesheet" href="../css/admin.css">
-        <link rel="stylesheet" href="../css/user.css">
+        <link rel="stylesheet" href="/css/admin.css">
+        <link rel="stylesheet" href="/css/user.css">
 
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
     </head>
 
     <body class="sb-nav-fixed" style="overflow-x: hidden">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="HomePageAdmin">Library Manager</a>
+            <a class="navbar-brand ps-3" href="#">Truyen</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                     class="fas fa-bars"></i></button>
@@ -54,38 +52,50 @@
                                         <thead>
                                             <tr>
                                                 <th><span>Username</span></th>
-                                                <th><span>User</span></th>
                                                 <th><span>Sex</span></th>
 
                                                 <th><span>Date birth</span></th>
-                                                <th class="text-center"><span>Phone</span></th>
                                                 <th><span>Email</span></th>
                                                 <th>&nbsp;</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+                                            <% for(var i=0; i < userList.rowCount; i++) { %>
+                                                <tr>
+                                                    <td>
+                                                        <p><%- userList.rows[i].username %><p>
+                                                    </td>
+                                                        <% if(userList.rows[i].sex.trim() == 'Nam'){ %>
+                                                        <td>Male</td>
+                                                        <% } else{ %>
+                                                        <td>Female</td>
+                                                        <% } %>
+                                                    <td>
+                                                        <%- userList.rows[i].datebirth %>
+                                                    </td>
+                                                    <td>
+                                                        <%- userList.rows[i].email %>
+                                                    </td>
                                                     <td style="width: 20%;">
-                                                        <a href="" class="table-link" style="text-decoration: none;" title="Reset Password">
-                                                            <span class="fa-stack">
-                                                                <i class="fa-solid fa-key"></i>                                                
-                                                            </span>
-                                                        </a>
-                                                        <a href="" class="table-link" style="text-decoration: none;" title="View Profile">
+                                                        <a href="AdminViewUser/<%- userList.rows[i].username %>" class="table-link" style="text-decoration: none;" title="View Profile">
                                                             <span class="fa-stack">
                                                                 <i class="fa-solid fa-eye"></i>
                                                             </span>
                                                         </a>
-                                                        <a href="" class="table-link danger" style="text-decoration: none;" 
-                                                           title="Detele Account" onclick="return confirm('Are you sure Detele Account: ');">
-                                                            <span class="fa-stack">
-                                                                <i class="fa-solid fa-trash"></i>  </span>
-                                                        </a>
+                                                        <form id="deleteForm_<%- userList.rows[i].username %>" action="/webtruyen/DeleteUser" method="POST" style="display: inline;">
+                                                            <input type="hidden" name="delusername" value="<%- userList.rows[i].username %>">
+                                                            <a href="#" class="table-link danger" style="text-decoration: none;" title="Delete Account"
+                                                               onclick="return confirmDelete('<%- userList.rows[i].username %>');">
+                                                                <span class="fa-stack">
+                                                                    <i class="fa-solid fa-trash"></i>
+                                                                </span>
+                                                            </a>
+                                                        </form>
+                                                        
                                                     </td>
                                                 </tr>
-                                            
-
-                                        </tbody>
+                                                 <% } %>
+                                            </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -112,6 +122,16 @@
 
                                                                });
         </script>
+<script>
+    function confirmDelete(username) {
+        if (confirm('Are you sure you want to delete the account: ' + username + '?')) {
+            var formId = 'deleteForm_' + username; // Tạo một ID duy nhất dựa trên tên người dùng
+            document.getElementById(formId).submit();
+        }
+        return false;
+    }
+</script>
+
 
     </body>
 
