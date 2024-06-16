@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,17 +85,31 @@
                                                 <td class="text-center">
                                                     <%- listBook.rows[i].name %>
                                                 </td>
-
+                                                <% if(listBook.rows[i].status === 'Processing') { %>
+                                                <td class="text-center">
+                                                    <span class="text-warning"><%- listBook.rows[i].status %></span>
+                                                </td>
+                                                <% } else if (listBook.rows[i].status === 'Returned'){ %> 
+                                                <td class="text-center">
+                                                    <span class="text-alert"><%- listBook.rows[i].status %></span>
+                                                </td>
+                                                <% } else if (listBook.rows[i].status === 'Borrowed'){ %>
+                                                <td class="text-center">
+                                                    <span class="text-success"><%- listBook.rows[i].status %></span>
+                                                </td>
+                                                <% } else { %>
                                                 <td class="text-center">
                                                     <span class="text-danger"><%- listBook.rows[i].status %></span>
+                                                </td>  
+                                                <% } %>
+
+
+                                                <td class="text-center">
+                                                    <span class="text-alert">  <%= moment(listBook.rows[i].form).format('YYYY-MM-DD') %></span>
                                                 </td>
 
                                                 <td class="text-center">
-                                                    <span class="text-success"><%- listBook.rows[i].form %></span>
-                                                </td>
-
-                                                <td class="text-center">
-                                                    <%- listBook.rows[i].to_date %>
+                                                    <%= moment(listBook.rows[i].to_date).format('YYYY-MM-DD') %>
                                                 </td>
 
                                                 <% if (action === 'Processing') { %>

@@ -50,7 +50,7 @@
                                 <div class="card bg-warning text-white mb-4">
                                     <div class="card-body">List Book Borrowed: <span style="font-size: 1.5rem"></span><%- numberBooks_Borrowed %></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="ListBorrowAdmin?action=borrowed">View Details</a>
+                                        <a class="small text-white stretched-link" href="ListBorrowAdmin/Borrow">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                                 <div class="card bg-danger text-white mb-4">
                                     <div class="card-body">List Book Order: <span style="font-size: 1.5rem" class="mx-2"></span><%- numberProcess %></div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="ListBorrowAdmin?action=processing">View Details</a>
+                                        <a class="small text-white stretched-link" href="ListBorrowAdmin/Processing">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
@@ -79,26 +79,19 @@
                                                 <tr>
                                                     <th class="text-center"><span>Username</span></th>
                                                     <th class="text-center"><span>Total</span></th>
-
                                                 </tr>
                                             </thead>
                                             <tbody>
-
-                                                <!-- <c:forEach begin="0" end="${requestScope.listTopUser.size()-1}" var="i" >
-                                                    <tr class=" bg-success ${i eq 0?"bg-danger":""} 
-                                                            ${i eq 1?"bg-warning":""}
-                                                            ${i eq 2?"bg-success":""}">
+                                                <% for (var i = 0 ; i <  topBorrower.rowCount ; i++) { %>
+                                                    <tr class=" bg ">
                                                         <td class="text-center">
-                                                            ${listTopUser.get(i).name}
+                                                          <%= topBorrower.rows[i].username %>
                                                         </td>
 
                                                         <td class="text-center">
-                                                            ${listTopUser.get(i).total}
+                                                          <%=  topBorrower.rows[i].borrow_count %>
                                                         </td>
-
-                                                    </tr>
-                                                </c:forEach> -->
-
+                                                    <% } %>
                                             </tbody>
                                         </table></div>
                                 </div>
@@ -116,26 +109,19 @@
                                                 <tr>
                                                     <th class="text-center"><span>Book</span></th>
                                                     <th class="text-center"><span>Total</span></th>
-
                                                 </tr>
                                             </thead>
                                             <tbody>
-
-                                                <!-- <c:forEach begin="0" end="${requestScope.listTopBook.size()-1}" var="i" >
-                                                    <tr class=" bg-success ${i eq 0?"bg-danger":""} 
-                                                            ${i eq 1?"bg-warning":""}
-                                                            ${i eq 2?"bg-success":""}">
+                                                <% for (var i = 0 ; i <  topBook.rowCount ; i++) { %>
+                                                    <tr class=" bg ">
                                                         <td class="text-center">
-                                                            ${listTopBook.get(i).name}
+                                                          <%= topBook.rows[i].name %>
                                                         </td>
 
                                                         <td class="text-center">
-                                                            ${listTopBook.get(i).total}
+                                                          <%=  topBook.rows[i].borrow_count %>
                                                         </td>
-
-                                                    </tr>
-                                                </c:forEach> -->
-
+                                                    <% } %>
                                             </tbody>
                                         </table>
                                     </div>

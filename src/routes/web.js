@@ -56,4 +56,18 @@ router.get('/AdminViewUser/:username', adminController.adminViewUserInfo);
 router.post('/ConfirmBorrowed', adminController.ConfirmBorrowed);
 router.post('/ConfirmReturned', adminController.ConfirmReturned);
 router.get('/ListBook', adminController.GetBook);
+router.get('/AdminViewBook/:Id', adminController.GetInfoBook);
+router.post('/AdminViewBook/UpdateBook', adminController.UpdateBookInfo);
+router.get('/CreateBook', adminController.GetCreateBook);
+router.post('/CreateBook', adminController.CreateBook);
+router.get('/Logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Error destroying session:', err);
+            res.status(500).send('Internal Server Error');
+        } else {
+            res.redirect('/webtruyen/dang-nhap');
+        }
+    });
+})
 module.exports = router;
