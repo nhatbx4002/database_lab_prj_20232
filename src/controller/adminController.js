@@ -94,8 +94,11 @@ async function getBookBorrow(req, res) {
 async function ConfirmBorrowed(req, res) {
     try {
         const idBorrow = req.body.Id;
-        const query = ' UPDATE borrower SET status = $1 WHERE id = $2';
-        const result = await pool.query(query, ['Borrowed', idBorrow]);
+        const fromDate = new Date();
+        const toDate = new Date();
+        toDate.setDate(fromDate.getDate() + 7);
+        const query = ' UPDATE borrower SET status = $1 , form = $2 ,to_date = $3 WHERE id = $4';
+        const result = await pool.query(query, ['Borrowed', fromDate, toDate, idBorrow]);
         res.redirect('/webtruyen/ListBorrowAdmin/Processing');
     } catch (error) {
         console.error('Loi xay ra khi xac nhan :', error)

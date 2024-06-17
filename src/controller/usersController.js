@@ -80,7 +80,7 @@ async function login(req, res, next) {
     if (role === 1) {
       res.redirect('../webtruyen/admin');
     } else {
-      res.redirect('../webtruyen/users_info');
+      res.redirect('../webtruyen/user');
     }
   } catch (error) {
     console.error('Lỗi truy vấn:', error);

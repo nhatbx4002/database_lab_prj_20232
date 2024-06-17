@@ -16,13 +16,13 @@
     <body class="sb-nav-fixed" style="overflow-x: hidden">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="HomePageAdmin">Library Manager</a>
+            <a class="navbar-brand ps-3" href="user">Library Manager</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                     class="fas fa-bars"></i></button>
             <form method="post" action="SearchBook" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input type="hidden" name="action" value="${action}"/>
+                    <input type="hidden" name="action" value=""/>
                     <input name="name" class="form-control" type="text" placeholder="Search book..." aria-label="Search for..."
                            aria-describedby="btnNavbarSearch" />
 
@@ -66,6 +66,26 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <% for(let i = 0; i < ListBookReturn.rowCount; i++) { 
+                                                let fromDate = new Date(ListBookReturn.rows[i].from_date);
+                                                let toDate = new Date(ListBookReturn.rows[i].to_date);
+                                                let formattedFromDate = fromDate.toLocaleDateString('en-GB'); // Định dạng dd/mm/yyyy
+                                                let formattedToDate = toDate.toLocaleDateString('en-GB'); // Định dạng dd/mm/yyyy
+                                            %>
+                                            <tr>
+                                                <td class="text-center"><%- ListBookReturn.rows[i].book_id %></td>
+                                                <td class="text-center" style="width: 30%; font-weight: 500">
+                                                    <%- ListBookReturn.rows[i].name %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%- formattedFromDate %>
+                                                </td>
+                                                <td class="text-center">
+                                                    <%- formattedToDate %>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                            
                                             
 
                                         </tbody>

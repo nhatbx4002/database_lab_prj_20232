@@ -3,7 +3,8 @@ const { getHomepage } = require('../controller/homeControler.js');
 const router = express.Router();
 const usersController = require('../controller/usersController.js');
 const adminController = require('../controller/adminController.js');
-
+const feedbackController = require('../controller/feedbackController.js');
+const homePageController = require('../controller/homePageController.js');
 router.get('/trang-chu', getHomepage);
 
 router.get('/dang-ky', (req, res) => {
@@ -15,10 +16,9 @@ router.get('/dang-nhap', (req, res) => {
 router.get('/quen-mat-khau', (req, res) => {
     res.render('resetpassword')
 })
-router.post('/create-users', usersController.create_users);
 router.post('/dang-nhap', usersController.login);
 router.post('/reset-pwd', usersController.reset);
-
+router.post('/create-users', usersController.create_users)
 router.get('/homepage', (req, res) => {
     res.render('homepage');
 })
@@ -30,22 +30,13 @@ router.get('/searchBookUser', (req, res) => {
 router.get('/view-feedback', (req, res) => {
     res.render('admin/ViewFeedBack')
 })
-router.get('/list-return-user', (req, res) => {
-    res.render('user/ListReturnUser')
-})
 router.get('/ListUser', adminController.adminViewUser);
 
 router.get('/list-borrow-user', (req, res) => {
     res.render('user/ListBorrowUser')
 })
-router.get('/list-processing-user', (req, res) => {
-    res.render('user/ListProcessingUser')
-})
 router.get('/list-borrow-admin', (req, res) => {
     res.render('admin/ListBorrowedUser')
-})
-router.get('/user', (req, res) => {
-    res.render('user/homepage_users')
 })
 router.get('/feedback', (req, res) => {
     res.render('user/feedback');
@@ -70,4 +61,14 @@ router.get('/Logout', (req, res) => {
         }
     });
 })
+
+
+router.post('/feed_back', feedbackController.createFeedback);
+router.post('/SearchBook', feedbackController.findBooksByCategory);
+router.post('/actionBorrow', homePageController.insertBooksBorrower);
+router.get('/user', homePageController.ShowAllBooks);
+router.get('/ListReturnedUser', homePageController.ListBookReturn);
+router.get('/ListProcessingUser', homePageController.showBorrowedBooks)
+router.get('/ListBorrowUser', homePageController.ListBorrow)
+
 module.exports = router;

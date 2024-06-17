@@ -16,7 +16,7 @@
     <body class="sb-nav-fixed" style="overflow-x: hidden">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="HomePageAdmin">Library Manager</a>
+            <a class="navbar-brand ps-3" href="user">Library Manager</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                     class="fas fa-bars"></i></button>
@@ -57,7 +57,7 @@
                                     <h1 style="text-align: center; margin: 10px 0 10px 0" class="text-primary">List Book In Process</h1>
 
                                     <table class="table user-list">
-
+ 
                                         <thead>
                                             <tr>
                                                 <th class="text-center"><span>ID</span></th>
@@ -66,21 +66,22 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach items="" var="i">
+                                            <% for(let i = 0; i < borrowedBooks.rowCount; i++) { %>
                                                 <tr>
-                                                    <td class="text-center"></td>
-
-                                                    <td  style="width: 30%; font-weight: 500">
-                                                        
+                                                    <td class="text-center"><%- borrowedBooks.rows[i].book_id %></td>
+                                                    
+                                                    <td style="width: 30%; font-weight: 500; text-align: center;">
+                                                        <%- borrowedBooks.rows[i].name %>
                                                     </td>
+                                                    
 
                                                     <td class="text-center">
-                                                        <span class="text-success"></span>
+                                                        <span class="text-success"><%- borrowedBooks.rows[i].status %></span>
                                                     </td>
 
 
                                                 </tr>
-                                           
+                                                <% } %>
 
                                         </tbody>
                                     </table>
