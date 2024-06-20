@@ -39,7 +39,7 @@
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    aria-expanded="false"><img src="\img\avt1.jpg" alt="Avatar" class="avatar-img"></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="Logout">Logout</a></li>
                     </ul>
@@ -50,7 +50,7 @@
         <div id="layoutSidenav">
 
             <!-- Sidebar  -->
-            <%- include('../user/sidebar.ejs') %>
+            <%- include('../admin/sidebar.ejs') %>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="row">
@@ -58,17 +58,29 @@
                             <div class="main-box clearfix ">
                                 <div class="table-responsive">
                                     <table class="table user-list">
-
                                         <thead>
                                             <tr>
                                                 <th class="text-center"><span>Username</span></th>
+                                                    
                                                 <th class="text-center"><span>Title</span></th>
+                                                    
                                                 <th class="text-center"><span>Content</span></th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+                                            <% for (var i = 0 ; i < list.rowCount ; i++) { %>
+                                                <tr>
+                                                    <td class="text-center"><%- list.rows[i].user_id %></td>
 
+                                                    <td class="text-center">
+                                                        <p> <%- list.rows[i].title %><p>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <%- list.rows[i].content %>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
                                         </tbody>
                                     </table>
                                 </div>

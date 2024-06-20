@@ -22,7 +22,7 @@
 <body class="sb-nav-fixed" style="overflow-x: hidden">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="user">Library Manager</a>
+        <a class="navbar-brand ps-3" href="user">TTV</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <form method="post" action="SearchBook" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
@@ -63,7 +63,7 @@
                                             <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                                                 <!-- img -->
                                                 <div class="bg-image hover-zoom ripple rounded ripple-surface">
-                                                    <img src="<%- findbook.img %>"
+                                                    <img src="<%- findbook.rows[i].img %>"
                                                          class="w-75" />
                                                     <a href="#!">
                                                         <div class="hover-overlay">
@@ -73,7 +73,7 @@
                                                 </div>
                                             </div>
                                                 <div class="col-md-12 col-lg-8 col-xl-8">
-                                                <a href="#" style="text-decoration: none"><h5></h5></a>
+                                                    <a href="#" style="text-decoration: none"><h5><%- findbook.rows[i].name %></h5></a>
                                                 <div class="d-flex flex-column flex-md-row">
                                                     <div class="col-md-6 col-lg-6 ">
                                                         <div class="d-flex flex-row">
@@ -94,14 +94,6 @@
                                                                 <%- findbook.rows[i].current %>
                                                             </span> 
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-lg-6 "><div class="d-flex flex-row">
-                                                            <span>
-                                                                <span style="font-weight: bold">Language: </span>  
-                                                                <%- findbook.rows[i].language %>
-                                                            </span> 
-                                                        </div>
-                                                        
                                                     </div>
                                                 </div>
                                                 <form action="/webtruyen/actionBorrow" method="post"> <!-- Sửa lại đường dẫn của form action -->

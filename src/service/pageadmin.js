@@ -48,7 +48,7 @@ const ViewUserInfo = async (username) => {
 }
 const GetListBookProcessing = async () => {
     try {
-        const query = 'select bo.id , bo.username, bo.form, bo.to_date, bo.status , b.name FROM borrower bo LEFT JOIN book b ON bo.book_id = b.id WHERE status = $1'
+        const query = 'select bo.id , bo.username, bo.from_date, bo.to_date, bo.status , b.name FROM borrower bo LEFT JOIN book b ON bo.book_id = b.id WHERE status = $1'
         const result = await pool.query(query, ['Processing']);
         return result;
     } catch (error) {
@@ -59,7 +59,7 @@ const GetListBookProcessing = async () => {
 
 const GetListBookBorrowed = async () => {
     try {
-        const query = 'select bo.id , bo.username, bo.form, bo.to_date, bo.status , b.name FROM borrower bo LEFT JOIN book b ON bo.book_id = b.id WHERE status = $1 OR status = $2'
+        const query = 'select bo.id , bo.username, bo.from_date, bo.to_date, bo.status , b.name FROM borrower bo LEFT JOIN book b ON bo.book_id = b.id WHERE status = $1 OR status = $2'
         const result = await pool.query(query, ['Borrowed', 'Late']);
         return result;
     } catch (error) {
@@ -70,7 +70,7 @@ const GetListBookBorrowed = async () => {
 
 const GetListBookReturned = async () => {
     try {
-        const query = 'select bo.id , bo.username, bo.form, bo.to_date, bo.status , b.name FROM borrower bo LEFT JOIN book b ON bo.book_id = b.id WHERE status = $1'
+        const query = 'select bo.id , bo.username, bo.from_date, bo.to_date, bo.status , b.name FROM borrower bo LEFT JOIN book b ON bo.book_id = b.id WHERE status = $1'
         const result = await pool.query(query, ['Returned']);
         return result;
     } catch (error) {
@@ -129,7 +129,16 @@ function convertEmptyToNullInObject(obj) {
     }
     return converted;
 }
-
+const GetAllFeedback = async () => {
+    try {
+        const query = 'SELECT * FROM feedback';
+        const result = await pool.query(query);
+        return result;
+    } catch (error) {
+        console.error('Loi khi truy feedback : ', error);
+        res.status(500).send('Co loi xay ra');
+    }
+}
 module.exports = {
     getNumberBooks,
     getNumberUsers,
@@ -145,5 +154,6 @@ module.exports = {
     ViewInfoBook,
     convertEmptyToNullInObject,
     getTopBorrower,
-    getTopBook
+    getTopBook,
+    GetAllFeedback
 }

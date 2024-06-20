@@ -14,7 +14,7 @@
 <body class="sb-nav-fixed" style="overflow-x: hidden">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="user">Library Manager</a>
+        <a class="navbar-brand ps-3" href="user">TTV</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <form method="post" action="SearchBook" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
@@ -82,17 +82,9 @@
                                                                 <%- book.rows[i].current %>
                                                             </span>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-6 col-lg-6 ">
-                                                        <div class="d-flex flex-row">
-                                                            <span>
-                                                                <span style="font-weight: bold">Language: </span>  
-                                                                <%- book.rows[i].language %>
-                                                            </span>
-                                                        </div>
-                                                    </div>
+                                                    </div>>
                                                 </div>
-                                                <form action="/webtruyen/actionBorrow" method="post"> <!-- Sửa lại đường dẫn của form action -->
+                                                <form action="/webtruyen/actionBorrow" method="post">
                                                     <input type="hidden" name="bookId" value="<%- book.rows[i].id %>" />
                                                     <% if (book.rows[i].current > 0 ) { %>
                                                         <button type="submit" class="btn btn-primary btn-sm mt-2">Borrow</button>

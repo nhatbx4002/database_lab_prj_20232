@@ -70,5 +70,5 @@ router.get('/user', homePageController.ShowAllBooks);
 router.get('/ListReturnedUser', homePageController.ListBookReturn);
 router.get('/ListProcessingUser', homePageController.showBorrowedBooks)
 router.get('/ListBorrowUser', homePageController.ListBorrow)
-
+router.get('/ViewFeedBack', adminController.Viewfeedback);
 module.exports = router;

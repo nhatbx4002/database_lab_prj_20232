@@ -56,7 +56,7 @@ async function ListBorrow(req, res) {
     try {
         const user = req.session.username;
         const query = `
-            SELECT borrower.book_id, book.name, borrower.form, borrower.to_date
+            SELECT borrower.book_id, book.name, borrower.from_date, borrower.to_date
             FROM borrower
             JOIN book ON borrower.book_id = book.id
             WHERE borrower.username = $1 AND borrower.status = 'Borrowed';
@@ -72,7 +72,7 @@ async function ListBookReturn(req, res) {
     try {
         const user = req.session.username;
         const query = `
-            SELECT borrower.book_id, book.name, borrower.form, borrower.to_date
+            SELECT borrower.book_id, book.name, borrower.from_date, borrower.to_date
             FROM borrower
             JOIN book ON borrower.book_id = book.id
             WHERE borrower.status = 'Returned' AND borrower.username = $1

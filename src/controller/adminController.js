@@ -2,7 +2,7 @@ const pool = require('../config/database');
 const session = require('express-session');
 const express = require('express');
 require('dotenv').config
-const { getNumberBooks, getNumberUsers, getNumberBooks_Borrowed, getNumberProcess, listUsers, ViewUserInfo, GetListBookProcessing, GetListBookReturned, GetListBookBorrowed, GetAllBook, ViewInfoBook, GetAllCategory, convertEmptyToNullInObject, getTopBorrower, getTopBook } = require('../service/pageadmin.js')
+const { getNumberBooks, getNumberUsers, getNumberBooks_Borrowed, getNumberProcess, listUsers, ViewUserInfo, GetListBookProcessing, GetListBookReturned, GetListBookBorrowed, GetAllBook, ViewInfoBook, GetAllCategory, convertEmptyToNullInObject, getTopBorrower, getTopBook, GetAllFeedback } = require('../service/pageadmin.js')
 const moment = require('moment');
 
 async function adminHomepage(req, res) {
@@ -74,7 +74,6 @@ async function getBookBorrow(req, res) {
     try {
         const user = req.session.username;
         const action = req.params.action;
-        // console.log(action);
         if (action === 'Processing') {
             const result = await GetListBookProcessing();
             console.log()
@@ -97,7 +96,7 @@ async function ConfirmBorrowed(req, res) {
         const fromDate = new Date();
         const toDate = new Date();
         toDate.setDate(fromDate.getDate() + 7);
-        const query = ' UPDATE borrower SET status = $1 , form = $2 ,to_date = $3 WHERE id = $4';
+        const query = ' UPDATE borrower SET status = $1 , from_date = $2 ,to_date = $3 WHERE id = $4';
         const result = await pool.query(query, ['Borrowed', fromDate, toDate, idBorrow]);
         res.redirect('/webtruyen/ListBorrowAdmin/Processing');
     } catch (error) {
@@ -180,6 +179,14 @@ async function CreateBook(req, res) {
         res.status(500).send('An error occurred');
     }
 }
+async function Viewfeedback(req, res) {
+    try {
+        const feedback = await GetAllFeedback();
+        res.render('admin/ViewFeedBack', { list: feedback });
+    } catch (error) {
+
+    }
+}
 module.exports = {
     adminHomepage,
     adminViewUser,
@@ -192,5 +199,6 @@ module.exports = {
     GetInfoBook,
     UpdateBookInfo,
     GetCreateBook,
-    CreateBook
+    CreateBook,
+    Viewfeedback
 }

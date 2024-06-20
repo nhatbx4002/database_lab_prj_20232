@@ -121,7 +121,7 @@ async function reset(req, res) {
 async function getUserInfo(req, res) {
   const username = req.session.username;
   try {
-    const query = 'Select * from userinfo WHERE username = $1;'
+    const query = 'Select * from user_info WHERE username = $1;'
     const result = await pool.query(query, [username]);
     res.render('user/ViewUser', { userinfo: result.rows[0] });
   } catch (error) {
